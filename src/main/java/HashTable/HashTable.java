@@ -1,6 +1,7 @@
 package HashTable;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 
 public class HashTable {
@@ -10,10 +11,10 @@ public class HashTable {
     private int u;
     private int b;
     private int collisionsCounter = 0;
-    public HashTable(int u, int b, int n) {
+    public HashTable(int u, int b) {
         this.u = u;
         this.b = b;
-        this.n = n;
+        this.n = 1 << b;
         this.collisionsCounter = 0;
         h = generateHashMatrix(b, u);
         table = new String[this.n*this.n];
@@ -30,6 +31,7 @@ public class HashTable {
         }
         return h;
     }
+
     public int hash(String str) {
         int[] hx = new int[b];
         byte[] bytes = str.getBytes();
@@ -45,46 +47,52 @@ public class HashTable {
         return index;
     }
 
-    private boolean rehashing(){
-        int[] newTable;
+    private boolean rehashing(String x){
+        String[] newTable;
         int index;
         h = generateHashMatrix(b, u);
-        newTable = new int[this.n*this.n];
-        for (int j : table) {
+        newTable = new String[this.n*this.n];
+        for (String j : table) {
             index = hash(j);
-            if (newTable[index] != 0) { //////////////////change when going stringy
+            if (newTable[index] != null) { //////////////////change when going stringy
                 return false;
             }
             newTable[index] = j;
+        }
+        index = hash(x);
+        if(newTable[index] != null) { //////////////////change when going stringy
+            return false;
         }
         table = newTable;
         return true;
     }
 
 
-    private void rebuildTable(){
+    private void rebuildTable(String x){
         while(true){
-            if(rehashing()){
+            if(rehashing(x)){
                 return;
             }
         }
     }
 
-    public boolean insert(int x){
+    public boolean insert(String x){
         int index = hash(x);
-        if(table[index] != 0){ //////////////////change when going stringy
+        if(table[index] == null){
             table[index] = x;
-            return true; ////////////////checkkkkk iffffff exists
-        }else{
-            rebuildTable();
+            return true;
+        }else if(Objects.equals(table[index], x)){
             return false;
+        }else{
+            rebuildTable(x);
+            return true;
         }
     }
 
     public static void main(String[] args) {
-//        HashTable uh = new HashTable(32, 5);
-//        System.out.println(uh.hash(123456));
-        int[] table = new int[2];
-        System.out.println(Arrays.toString(table));
+        HashTable uh = new HashTable(32, 5);
+        System.out.println(uh.insert("hello ---- world"));
+        System.out.println(uh.hash("hello ---- world"));
+        System.out.println(Arrays.toString(uh.table));
     }
 }
