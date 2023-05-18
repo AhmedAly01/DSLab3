@@ -84,8 +84,12 @@ public class HashTable {
     }
 
     public int insert(String x, boolean resolveCollision){ // true resolves    false doesn't
+        if(x.length() > u/8){
+            System.out.println("string is too big");
+            return 4; //// string is too big
+        }
         int index = hash(x);
-        System.out.println(index);
+        System.out.println(x.length());
         if(table[index] == null){
             table[index] = x;
             return 1; //// successfully inserted
@@ -102,7 +106,7 @@ public class HashTable {
 
     public static void main(String[] args) {
         HashTable uh = new HashTable(10);
-        System.out.println(uh.insert("hello-----------------------------------------------------------", true));
+        System.out.println(uh.insert("hello------------------------------------------------------------", true));
         System.out.println(Arrays.toString(uh.table));
         System.out.println(uh.insert("hello-----------", true));
         System.out.println(Arrays.toString(uh.table));
