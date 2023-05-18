@@ -13,11 +13,10 @@ public class HashTable {
     private int collisionsCounter = 0;
 
     public HashTable(int n) {
-        this.b = 2* (int)Math.ceil(Math.log(n) / Math.log(2));;
+        this.b = 2* (int)Math.ceil(Math.log(n) / Math.log(2));
         this.n = n;
+        h = generateHashMatrix(b, u);
         this.collisionsCounter = 0;
-        h = new int[b][u];
-        Arrays.stream(h).forEach(row -> Arrays.fill(row, 1));
         table = new String[this.n*this.n];
     }
 
@@ -28,7 +27,6 @@ public class HashTable {
         for (int i = 0; i < b; i++) {
             for (int j = 0; j < u; j++) {
                 h[i][j] = rand.nextInt(2);
-//                h[i][j] = 1;
             }
         }
         return h;
@@ -48,9 +46,9 @@ public class HashTable {
         int index = 0;
 
         for (int i = 0; i < b; i++) {
-            index += hx[i];
+            index += hx[i] << i;
         }
-        return index;
+        return index%this.n*this.n;
     }
 
     private boolean rehashing(String x){
@@ -85,29 +83,31 @@ public class HashTable {
         }
     }
 
-    public boolean insert(String x){
+    public int insert(String x, boolean resolveCollision){ // true resolves    false doesn't
         int index = hash(x);
         System.out.println(index);
         if(table[index] == null){
             table[index] = x;
-            return true;
+            return 1; //// successfully inserted
         }else if(Objects.equals(table[index], x)){
-            return false;
+            return 2; ////already exists
         }else{
-            rebuildTable(x);
-            return true;
+            if(resolveCollision){
+                rebuildTable(x);
+            }
+            return 3; ////collision
         }
     }
 
 
     public static void main(String[] args) {
         HashTable uh = new HashTable(10);
-        System.out.println(uh.insert("hello-----------------------------------------------------------"));
+        System.out.println(uh.insert("hello-----------------------------------------------------------", true));
         System.out.println(Arrays.toString(uh.table));
-        System.out.println(uh.insert("hello-----------"));
+        System.out.println(uh.insert("hello-----------", true));
         System.out.println(Arrays.toString(uh.table));
-        System.out.println(uh.insert("hello-----------------------------------------------------------"));
-        System.out.println(uh.insert("hello-----------"));
+        System.out.println(uh.insert("hello-----------------------------------------------------------", true));
+        System.out.println(uh.insert("hello-----------", true));
         System.out.println(uh.collisionsCounter);
         System.out.println(Arrays.toString(uh.table));
 
