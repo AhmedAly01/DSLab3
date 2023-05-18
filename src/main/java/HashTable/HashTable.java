@@ -48,7 +48,7 @@ public class HashTable {
         for (int i = 0; i < b; i++) {
             index += hx[i] << i;
         }
-        return index%this.n*this.n;
+        return index%(this.n*this.n);
     }
 
     private boolean rehashing(String x){
@@ -123,6 +123,9 @@ public class HashTable {
 
     public String[] getTable() {
         return table;
+    }
+    public int getN(){
+        return n;
     }
 
 }
