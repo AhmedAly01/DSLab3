@@ -48,9 +48,9 @@ public class HashTable {
         int index = 0;
 
         for (int i = 0; i < b; i++) {
-            index += hx[i];
+            index += hx[i] << i;
         }
-        return index;
+        return index%this.n*this.n;
     }
 
     private boolean rehashing(String x){
