@@ -1,23 +1,22 @@
 package HashTable;
 
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Random;
 
-public class HashTable {
+public class HashTable3 {
     private int[][] h;
     private int n;
-    private String[] table;
+    private HashTable[] table;
     private int u;
     private int b;
     private int collisionsCounter = 0;
-    public HashTable(int u, int b) {
+    public HashTable3(int u, int b) {
         this.u = u;
         this.b = b;
         this.n = 1 << b;
         this.collisionsCounter = 0;
         h = generateHashMatrix(b, u);
-        table = new String[this.n*this.n];
+        table = new HashTable[this.n];
     }
 
     private int[][] generateHashMatrix(int b, int u){
@@ -47,63 +46,31 @@ public class HashTable {
         return index;
     }
 
-    private boolean rehashing(String x){
-        String[] newTable;
-        int index;
-        h = generateHashMatrix(b, u);
-        newTable = new String[this.n*this.n];
-        for (String j : table) {
-            index = hash(j);
-            if (newTable[index] != null) { //////////////////change when going stringy
-                return false;
-            }
-            newTable[index] = j;
-        }
-        index = hash(x);
-        if(newTable[index] != null) { //////////////////change when going stringy
-            return false;
-        }
-        table = newTable;
-        return true;
-    }
-
-
-    private void rebuildTable(String x){
-        while(true){
-            if(rehashing(x)){
-                return;
-            }
-        }
-    }
-
     public boolean insert(String x){
-        int index = hash(x);
+        int index = hash(x)%50;
         if(table[index] == null){
-            table[index] = x;
+            table[index] = new HashTable(10,10);// TODO: change this parameters
+            table[index].insert(x);
             return true;
-        }else if(Objects.equals(table[index], x)){
-            return false;
+//        }else if(Hs[table[index]] == null &&As[table[index]][0] == x){ // TODO: use hash search function in this condition
+//            return false;
         }else{
-            rebuildTable(x);
+            collisionsCounter++;
+            HashTable table = new HashTable(10,10);// TODO: change this parameters
+            for(String elem: this.table[index].getTable()){
+                if(elem == null)continue;
+                System.out.println("found elem is" + elem);
+                table.insert(elem);
+            }
             return true;
         }
     }
-
 
     public static void main(String[] args) {
-        HashTable uh = new HashTable(32, 5);
+        HashTable3 uh = new HashTable3(32, 5);
+        System.out.println(uh.insert("hello ---- world"));
         System.out.println(uh.insert("hello ---- world"));
         System.out.println(uh.hash("hello ---- world"));
-        System.out.println(uh.hash("hello -- world"));
         System.out.println(Arrays.toString(uh.table));
     }
-
-    public int[][] getHashFunction() {
-        return h;
-    }
-
-    public String[] getTable() {
-        return table;
-    }
-
 }
