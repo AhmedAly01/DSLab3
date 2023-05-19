@@ -76,7 +76,17 @@ public class HashTable3 {
             return true;
         }
     }
+    /*
+    public Boolean find(String x){
+        int index = hash(x);
+        return table[index].find(x);
+    }
+    public void delete(String x){
+        int index = hash(x);
+        return table[index].delete(x);
+    }
 
+*/
     public static void main(String[] args) {
         HashTable3 uh = new HashTable3(4);
         System.out.println(uh.insert("h1"));
