@@ -51,7 +51,6 @@ public class HashTable3 {
 
     public boolean insert(String x){
         int index = hash(x);
-        System.out.println("index  " + index);
         if(table[index] == null){
             table[index] = new HashTable(1);// TODO: change this parameters
             int state = table[index].insert(x,false);
@@ -65,7 +64,6 @@ public class HashTable3 {
                 HashTable table = new HashTable(this.table[index].getN()+1);
                 for(String elem: this.table[index].getTable()){
                     if(elem == null)continue;
-                    System.out.println("found elem is" + elem);
                     table.insert(elem,true);
                 }
                 table.insert(x,true);
@@ -79,11 +77,15 @@ public class HashTable3 {
 
     public Boolean find(String x){
         int index = hash(x);
-        return table[index].find(x);
+        if (table[index] != null)
+            return table[index].find(x);
+        else return false;
     }
     public boolean delete(String x){ ////// changed to boolean true if item to be deleted existed and false if not
         int index = hash(x);
-        return table[index].delete(x);
+        if (table[index] != null)
+            return table[index].delete(x);
+        else return false;
     }
 
     public static void main(String[] args) {
@@ -99,4 +101,6 @@ public class HashTable3 {
 //        System.out.println(uh.hash("hiiiiiiiiii"));
         System.out.println(Arrays.toString(uh.table));
     }
+
+    public int getCollisionsCounter() { return collisionsCounter; }
 }

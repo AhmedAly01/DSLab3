@@ -89,7 +89,6 @@ public class HashTable {
             return 4; //// string is too big
         }
         int index = hash(x);
-        System.out.println(x.length());
         if(table[index] == null){
             table[index] = x;
             return 1; //// successfully inserted
@@ -104,15 +103,18 @@ public class HashTable {
     }
     public Boolean find(String x){
         int index = hash(x);
-        return table[index] != null;
+        return Objects.equals(table[index], x);
     }
     public boolean delete(String x){
         int index = hash(x);
         if(table[index] == null ){
             return false;
         }
-        table[index] = null;
-        return true;
+        if (Objects.equals(table[index], x)) {
+            table[index] = null;
+            return true;
+        }
+        else return false;
     }
 
 
@@ -139,5 +141,7 @@ public class HashTable {
     public int getN(){
         return n;
     }
+
+    public int getCollisionsCounter() { return collisionsCounter; }
 
 }
