@@ -102,6 +102,18 @@ public class HashTable {
             return 3; ////collision
         }
     }
+    public Boolean find(String x){
+        int index = hash(x);
+        return table[index] != null;
+    }
+    public boolean delete(String x){
+        int index = hash(x);
+        if(table[index] == null ){
+            return false;
+        }
+        table[index] = null;
+        return true;
+    }
 
 
     public static void main(String[] args) {

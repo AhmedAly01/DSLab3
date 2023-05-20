@@ -76,17 +76,16 @@ public class HashTable3 {
             return true;
         }
     }
-    /*
+
     public Boolean find(String x){
         int index = hash(x);
         return table[index].find(x);
     }
-    public void delete(String x){
+    public boolean delete(String x){ ////// changed to boolean true if item to be deleted existed and false if not
         int index = hash(x);
         return table[index].delete(x);
     }
 
-*/
     public static void main(String[] args) {
         HashTable3 uh = new HashTable3(4);
         System.out.println(uh.insert("h1"));
