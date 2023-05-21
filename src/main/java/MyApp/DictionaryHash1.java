@@ -89,10 +89,6 @@ public class DictionaryHash1 extends AbstractFactory{
     }
 
     @Override
-    String[] GetTable() {
-        return Hash.getTable();
-    }
-    @Override
     public int length() {return Hash.length();}
 
 }

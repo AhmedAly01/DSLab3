@@ -82,10 +82,6 @@ public class DictionaryHash2 extends AbstractFactory {
         return BatchExecution(builder.toString(),1);
     }
 
-    @Override
-    String[] GetTable() {
-        return new String[0];
-    }
 
     @Override
     public int length() {return Hash.length();}

@@ -6,6 +6,5 @@ public abstract class AbstractFactory {
     abstract boolean search(String str);
     abstract int[] BatchInsert(String file);
     abstract int[] BatchDelete(String file);
-    abstract String[] GetTable();
     abstract public int length();
 }

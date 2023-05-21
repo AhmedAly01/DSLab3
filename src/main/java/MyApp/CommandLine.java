@@ -29,7 +29,6 @@ public class CommandLine {
         System.out.println("    • Search <word>");
         System.out.println("    • Batch Insert");
         System.out.println("    • Batch Delete");
-        System.out.println("    • Get Table");
         System.out.println("    • Length");
         System.out.println("    • Exit");
         while(true){
@@ -42,9 +41,6 @@ public class CommandLine {
             }
             if (in.length == 1) {
                 if (in[0].equalsIgnoreCase("exit")) break;
-                else if(in[0].equalsIgnoreCase("GetTable")){
-                    System.out.println(Arrays.toString(Hash.GetTable()));
-                }
                 else if (in[0].equalsIgnoreCase("length")) {
                     System.out.println("Table Length = " + Hash.length());
                 }
