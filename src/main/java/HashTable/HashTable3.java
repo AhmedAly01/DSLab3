@@ -69,6 +69,8 @@ public class HashTable3 {
                 table.insert(x,true);
                 this.table[index] = table;
             }
+            else if(state==2||state==4)
+                return false;
 
             // TODO: change this parameters
             return true;
