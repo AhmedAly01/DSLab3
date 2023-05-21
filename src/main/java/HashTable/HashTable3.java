@@ -64,7 +64,6 @@ public class HashTable3 {
                 HashTable table = new HashTable(this.table[index].getN()+1);
                 for(String elem: this.table[index].getTable()){
                     if(elem == null)continue;
-                    System.out.println("found elem is" + elem);
                     table.insert(elem,true);
                 }
                 table.insert(x,true);
@@ -103,5 +102,5 @@ public class HashTable3 {
         System.out.println(Arrays.toString(uh.table));
     }
 
-    public int getCollisionsCounter() {return collisionsCounter;}
+    public int getCollisionsCounter() { return collisionsCounter; }
 }
