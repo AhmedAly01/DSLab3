@@ -8,7 +8,7 @@ public class HashTable {
     private int[][] h;
     private int n;
     private String[] table;
-    private int u = 512;
+    private int u = 64;
     private int b;
     private int collisionsCounter = 0;
 

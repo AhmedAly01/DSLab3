@@ -7,7 +7,7 @@ public class HashTable3 {
     private int[][] h;
     private int n;
     private HashTable[] table;
-    private int u = 512;
+    private int u = 64;
     private int b;
     private int collisionsCounter = 0;
     public HashTable3(int n) {
