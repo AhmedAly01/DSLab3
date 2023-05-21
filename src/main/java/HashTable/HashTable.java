@@ -144,4 +144,5 @@ public class HashTable {
 
     public int getCollisionsCounter() { return collisionsCounter; }
 
+    public int length() {return table.length;}
 }
