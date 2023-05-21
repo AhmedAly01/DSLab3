@@ -9,13 +9,18 @@ public class CommandLine {
         Scanner sc = new Scanner(System.in);
         AbstractFactory Hash;
         while (true) {
-            System.out.print("Enter the type of the backend HashTable (HashingTable1 - HashingTable2): ");
-            String HashType = sc.nextLine();
-            System.out.print("Enter the number N: ");
+            System.out.println("Enter the type of the backend HashTable: ");
+            System.out.println("1. HashingTable1.");
+            System.out.println("2. HashingTable2.");
+            int HashType = sc.nextInt();
+            System.out.print("Enter N: ");
             int n = sc.nextInt();
-            Hash = FactoryProducer.GetDictionaryHashingType(HashType,n);
-            if (Hash == null) System.out.println("Invalid Tree Type");
-            else break;
+            if (HashType == 1)
+                Hash = FactoryProducer.GetDictionaryHashingType("HashingTable1", n);
+            else if (HashType == 2)
+                Hash = FactoryProducer.GetDictionaryHashingType("HashingTable2", n);
+            else { System.out.println("Invalid Table Type!"); continue; }
+            break;
         }
         System.out.println("Welcome To Simple Dictionary!");
         System.out.println("Supported Commands:");
@@ -24,7 +29,8 @@ public class CommandLine {
         System.out.println("    • Search <word>");
         System.out.println("    • Batch Insert");
         System.out.println("    • Batch Delete");
-        System.out.println("    • GetTable");
+        System.out.println("    • Get Table");
+        System.out.println("    • Length");
         System.out.println("    • Exit");
         while(true){
             System.out.print("Enter Command: ");
@@ -38,6 +44,9 @@ public class CommandLine {
                 if (in[0].equalsIgnoreCase("exit")) break;
                 else if(in[0].equalsIgnoreCase("GetTable")){
                     System.out.println(Arrays.toString(Hash.GetTable()));
+                }
+                else if (in[0].equalsIgnoreCase("length")) {
+                    System.out.println("Table Length = " + Hash.length());
                 }
                 else {
                     System.out.println("Invalid Command");

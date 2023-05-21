@@ -105,4 +105,6 @@ public class HashTable3 {
     }
 
     public int getCollisionsCounter() { return collisionsCounter; }
+
+    public int length() {return table.length;}
 }
