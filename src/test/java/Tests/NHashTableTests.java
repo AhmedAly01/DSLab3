@@ -98,7 +98,7 @@ public class NHashTableTests {
             if (i % 2 == 0)
                 assertTrue(ht.find(stringsInserted.get(i)));
             else
-                assertFalse(ht.find(randStr(16)));
+                assertFalse(ht.find(randStr(8)));
         }
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
@@ -134,7 +134,7 @@ public class NHashTableTests {
             if (i % 2 == 0)
                 assertTrue(ht.delete(stringsInserted.get(i)));
             else
-                assertFalse(ht.delete(randStr(16)));
+                assertFalse(ht.delete(randStr(8)));
         }
         for (int i = 0; i < 10000; i++) {
             if (i % 2 == 0)
@@ -173,7 +173,7 @@ public class NHashTableTests {
             if (i % 2 == 0)
                 assertTrue(ht.find(stringsInserted.get(i)));
             else
-                assertFalse(ht.find(randStr(16)));
+                assertFalse(ht.find(randStr(8)));
         }
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
@@ -209,7 +209,7 @@ public class NHashTableTests {
             if (i % 2 == 0)
                 assertTrue(ht.delete(stringsInserted.get(i)));
             else
-                assertFalse(ht.delete(randStr(16)));
+                assertFalse(ht.delete(randStr(8)));
         }
         for (int i = 0; i < 30000; i++) {
             if (i % 2 == 0)

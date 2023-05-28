@@ -1,5 +1,8 @@
 package HashTable;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -7,11 +10,11 @@ public class HashTable3 {
     private int[][] h;
     private int n;
     private HashTable[] table;
-    private int u = 512;
+    private int u = 64;
     private int b;
     private int collisionsCounter = 0;
     public HashTable3(int n) {
-        this.b = 2* (int)Math.ceil(Math.log(n) / Math.log(2));
+        this.b = (int)Math.ceil(Math.log(n) / Math.log(2));
         this.n = n;
         h = generateHashMatrix(b, u);
         table = new HashTable[this.n];
@@ -52,10 +55,10 @@ public class HashTable3 {
     public boolean insert(String x){
         int index = hash(x);
         if(table[index] == null){
-            table[index] = new HashTable(1);// TODO: change this parameters
+            table[index] = new HashTable(1);
             int state = table[index].insert(x,false);
             return true;
-//        }else if(Hs[table[index]] == null &&As[table[index]][0] == x){ // TODO: use hash search function in this condition
+//        }else if(Hs[table[index]] == null &&As[table[index]][0] == x){
 //            return false;
         }else{
             int state = table[index].insert(x, false);
@@ -72,9 +75,62 @@ public class HashTable3 {
             else if(state==2||state==4)
                 return false;
 
-            // TODO: change this parameters
             return true;
         }
+    }
+
+    private int[] BatchExecution(String str,int type){
+        int success = 0, fail = 0;
+        String[] words = str.split(" ");
+        if(type==0) {
+            for (String s : words) {
+                if (this.insert(s)) {
+                    success++;
+                }
+                else {
+                    fail++;
+                }
+            }
+        }
+        else{
+            for (String s : words) {
+                if (this.delete(s)) {
+                    success++;
+                }
+                else {
+                    fail++;
+                }
+            }
+        }
+        return new int[]{success, fail};
+    }
+
+    public int[] BatchInsert(String file) {
+        StringBuilder builder = new StringBuilder();
+        try(BufferedReader Buffer = new BufferedReader(new FileReader(file))){
+            String str;
+            while((str = Buffer.readLine())!= null){
+                builder.append(str).append(" ");
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return BatchExecution(builder.toString(),0);
+    }
+
+    public int[] BatchDelete(String file) {
+        StringBuilder builder = new StringBuilder();
+        try(BufferedReader Buffer = new BufferedReader(new FileReader(file))){
+            String str;
+            while((str = Buffer.readLine())!= null){
+                builder.append(str).append(" ");
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return BatchExecution(builder.toString(),1);
     }
 
     public Boolean find(String x){

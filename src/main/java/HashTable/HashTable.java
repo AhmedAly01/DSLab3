@@ -1,5 +1,8 @@
 package HashTable;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
@@ -8,7 +11,7 @@ public class HashTable {
     private int[][] h;
     private int n;
     private String[] table;
-    private int u = 512;
+    private int u = 64;
     private int b;
     private int collisionsCounter = 0;
 
@@ -60,13 +63,13 @@ public class HashTable {
             if(j == null)
                 continue;
             index = hash(j);
-            if (newTable[index] != null) { //////////////////change when going stringy
+            if (newTable[index] != null) {
                 return false;
             }
             newTable[index] = j;
         }
         index = hash(x);
-        if(newTable[index] != null) { //////////////////change when going stringy
+        if(newTable[index] != null) {
             return false;
         }
         newTable[index] = x;
@@ -101,6 +104,62 @@ public class HashTable {
             return 3; ////collision
         }
     }
+
+    private int[] BatchExecution(String str,int type){
+        int success = 0, fail = 0;
+        String[] words = str.split(" ");
+        if(type==0) {
+            for (String s : words) {
+                int x = this.insert(s,true);
+                if (x==4||x==2) {
+                    fail++;
+                }
+                else {
+                    success++;
+                }
+            }
+        }
+        else{
+            for (String s : words) {
+                if (this.delete(s)) {
+                    success++;
+                }
+                else {
+                    fail++;
+                }
+            }
+        }
+        return new int[]{success, fail};
+    }
+
+    public int[] BatchInsert(String file) {
+        StringBuilder builder = new StringBuilder();
+        try(BufferedReader Buffer = new BufferedReader(new FileReader(file))){
+            String str;
+            while((str = Buffer.readLine())!= null){
+                builder.append(str).append(" ");
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return BatchExecution(builder.toString(),0);
+    }
+
+    public int[] BatchDelete(String file) {
+        StringBuilder builder = new StringBuilder();
+        try(BufferedReader Buffer = new BufferedReader(new FileReader(file))){
+            String str;
+            while((str = Buffer.readLine())!= null){
+                builder.append(str).append(" ");
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return BatchExecution(builder.toString(),1);
+    }
+
     public Boolean find(String x){
         int index = hash(x);
         return Objects.equals(table[index], x);
