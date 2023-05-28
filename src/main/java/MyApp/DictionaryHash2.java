@@ -27,59 +27,39 @@ public class DictionaryHash2 extends AbstractFactory {
         return Hash.find(str);
     }
 
-    private int[] BatchExecution(String str,int type){
-        int success = 0, fail = 0;
-        String[] words = str.split(" ");
-        if(type==0) {
-            for (String s : words) {
-                if (Hash.insert(s)) {
-                    success++;
-                }
-                else {
-                    fail++;
-                }
-            }
-        }
-        else{
-            for (String s : words) {
-                if (Hash.delete(s)) {
-                    success++;
-                }
-                else {
-                    fail++;
-                }
-            }
-        }
-        return new int[]{success, fail};
-    }
+//    private int[] BatchExecution(String str,int type){
+//        int success = 0, fail = 0;
+//        String[] words = str.split(" ");
+//        if(type==0) {
+//            for (String s : words) {
+//                if (Hash.insert(s)) {
+//                    success++;
+//                }
+//                else {
+//                    fail++;
+//                }
+//            }
+//        }
+//        else{
+//            for (String s : words) {
+//                if (Hash.delete(s)) {
+//                    success++;
+//                }
+//                else {
+//                    fail++;
+//                }
+//            }
+//        }
+//        return new int[]{success, fail};
+//    }
     @Override
     int[] BatchInsert(String file) {
-        StringBuilder builder = new StringBuilder();
-        try(BufferedReader Buffer = new BufferedReader(new FileReader(file))){
-            String str;
-            while((str = Buffer.readLine())!= null){
-                builder.append(str).append(" ");
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return BatchExecution(builder.toString(),0);
+        return Hash.BatchInsert(file);
     }
 
     @Override
     int[] BatchDelete(String file) {
-        StringBuilder builder = new StringBuilder();
-        try(BufferedReader Buffer = new BufferedReader(new FileReader(file))){
-            String str;
-            while((str = Buffer.readLine())!= null){
-                builder.append(str).append(" ");
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return BatchExecution(builder.toString(),1);
+        return Hash.BatchDelete(file);
     }
 
 
