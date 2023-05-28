@@ -14,7 +14,7 @@ public class HashTable3 {
     private int b;
     private int collisionsCounter = 0;
     public HashTable3(int n) {
-        this.b = 2* (int)Math.ceil(Math.log(n) / Math.log(2));
+        this.b = (int)Math.ceil(Math.log(n) / Math.log(2));
         this.n = n;
         h = generateHashMatrix(b, u);
         table = new HashTable[this.n];
