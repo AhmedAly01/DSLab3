@@ -1,18 +1,18 @@
 package Tests;
 
-import HashTable.HashTable3;
+import HashTable.HashTableN2;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class NHashTableTests {
-    @Test
-    public void TestInsertN() {
-        HashTable3 ht = new HashTable3(100);
-        ht.insert("Ahmed");
-        ht.insert("Mohamed");
-        ht.insert("Ali");
-        ht.insert("Hassan");
+public class N2HashTableTestsN2 {
+    @Test //test insert in small table
+    public void TestInsertN2() {
+        HashTableN2 ht = new HashTableN2(10);
+        ht.insert("Ahmed", true);
+        ht.insert("Mohamed", true);
+        ht.insert("Ali", true);
+        ht.insert("Hassan", true);
         assertTrue(ht.find("Ahmed"));
         assertTrue(ht.find("Mohamed"));
         assertTrue(ht.find("Ali"));
@@ -20,13 +20,13 @@ public class NHashTableTests {
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
 
-    @Test
-    public void TestFindN() {
-        HashTable3 ht = new HashTable3(100);
-        ht.insert("Ahmed");
-        ht.insert("Mohamed");
-        ht.insert("Ali");
-        ht.insert("Hassan");
+    @Test //test find in small table
+    public void TestFindN2() {
+        HashTableN2 ht = new HashTableN2(10);
+        ht.insert("Ahmed", true);
+        ht.insert("Mohamed", true);
+        ht.insert("Ali", true);
+        ht.insert("Hassan", true);
         assertTrue(ht.find("Ahmed"));
         assertFalse(ht.find("xyz"));
         assertTrue(ht.find("Ali"));
@@ -34,13 +34,13 @@ public class NHashTableTests {
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
 
-    @Test
-    public void TestDeleteN() {
-        HashTable3 ht = new HashTable3(100);
-        ht.insert("Ahmed");
-        ht.insert("Mohamed");
-        ht.insert("Ali");
-        ht.insert("Hassan");
+    @Test //test delete in small table
+    public void TestDeleteN2() {
+        HashTableN2 ht = new HashTableN2(10);
+        ht.insert("Ahmed", true);
+        ht.insert("Mohamed", true);
+        ht.insert("Ali", true);
+        ht.insert("Hassan", true);
         assertTrue(ht.delete("Ahmed"));
         assertTrue(ht.delete("Mohamed"));
         assertTrue(ht.delete("Ali"));
@@ -52,13 +52,13 @@ public class NHashTableTests {
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
 
-    @Test
-    public void TestDeleteNotExistN() {
-        HashTable3 ht = new HashTable3(100);
-        ht.insert("Ahmed");
-        ht.insert("Mohamed");
-        ht.insert("Ali");
-        ht.insert("Hassan");
+    @Test //test deletion of elements that don't exist in small table
+    public void TestDeleteNotExistN2() {
+        HashTableN2 ht = new HashTableN2(10);
+        ht.insert("Ahmed", true);
+        ht.insert("Mohamed", true);
+        ht.insert("Ali", true);
+        ht.insert("Hassan", true);
         assertTrue(ht.delete("Ahmed"));
         assertFalse(ht.delete("xyz"));
         assertTrue(ht.delete("Ali"));
@@ -70,13 +70,13 @@ public class NHashTableTests {
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
 
-    @Test
-    public void TestInsertBigN() {
-        HashTable3 ht = new HashTable3(10000);
+    @Test //test insert in big table
+    public void TestInsertBigN2() {
+        HashTableN2 ht = new HashTableN2(10000);
         ArrayList<String> stringsInserted = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {
             String str = randStr(8);
-            ht.insert(str);
+            ht.insert(str, true);
             stringsInserted.add(str);
         }
         for (int i = 0; i < 10000; i++) {
@@ -85,13 +85,13 @@ public class NHashTableTests {
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
 
-    @Test
-    public void TestFindBigN() {
-        HashTable3 ht = new HashTable3(10000);
+    @Test //test find in big table
+    public void TestFindBigN2() {
+        HashTableN2 ht = new HashTableN2(10000);
         ArrayList<String> stringsInserted = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {
             String str = randStr(8);
-            ht.insert(str);
+            ht.insert(str, true);
             stringsInserted.add(str);
         }
         for (int i = 0; i < 10000; i++) {
@@ -103,13 +103,13 @@ public class NHashTableTests {
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
 
-    @Test
-    public void TestFDeleteBigN() {
-        HashTable3 ht = new HashTable3(10000);
+    @Test //test delete in big table
+    public void TestFDeleteBigN2() {
+        HashTableN2 ht = new HashTableN2(10000);
         ArrayList<String> stringsInserted = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {
             String str = randStr(8);
-            ht.insert(str);
+            ht.insert(str, true);
             stringsInserted.add(str);
         }
         for (int i = 0; i < 10000; i++) {
@@ -121,13 +121,13 @@ public class NHashTableTests {
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
 
-    @Test
-    public void TestFDeleteNotExistBigN() {
-        HashTable3 ht = new HashTable3(10000);
+    @Test //test deletion of elements that don't exist in big table
+    public void TestFDeleteNotExistBigN2() {
+        HashTableN2 ht = new HashTableN2(10000);
         ArrayList<String> stringsInserted = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {
             String str = randStr(8);
-            ht.insert(str);
+            ht.insert(str, true);
             stringsInserted.add(str);
         }
         for (int i = 0; i < 10000; i++) {
@@ -145,13 +145,13 @@ public class NHashTableTests {
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
 
-    @Test
-    public void TestInsertBiggerN() {
-        HashTable3 ht = new HashTable3(10000);
+    @Test //test insert bigger number of elements in big table
+    public void TestInsertBiggerN2() {
+        HashTableN2 ht = new HashTableN2(10000);
         ArrayList<String> stringsInserted = new ArrayList<>();
         for (int i = 0; i < 30000; i++) {
             String str = randStr(8);
-            ht.insert(str);
+            ht.insert(str, true);
             stringsInserted.add(str);
         }
         for (int i = 0; i < 30000; i++) {
@@ -160,13 +160,13 @@ public class NHashTableTests {
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
 
-    @Test
-    public void TestFindBiggerN() {
-        HashTable3 ht = new HashTable3(10000);
+    @Test //test find bigger number of elements in big table
+    public void TestFindBiggerN2() {
+        HashTableN2 ht = new HashTableN2(10000);
         ArrayList<String> stringsInserted = new ArrayList<>();
         for (int i = 0; i < 30000; i++) {
             String str = randStr(8);
-            ht.insert(str);
+            ht.insert(str, true);
             stringsInserted.add(str);
         }
         for (int i = 0; i < 30000; i++) {
@@ -178,13 +178,13 @@ public class NHashTableTests {
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
 
-    @Test
-    public void TestFDeleteBiggerN() {
-        HashTable3 ht = new HashTable3(10000);
+    @Test //test delete bigger number of elements in big table
+    public void TestFDeleteBiggerN2() {
+        HashTableN2 ht = new HashTableN2(10000);
         ArrayList<String> stringsInserted = new ArrayList<>();
         for (int i = 0; i < 30000; i++) {
             String str = randStr(8);
-            ht.insert(str);
+            ht.insert(str, true);
             stringsInserted.add(str);
         }
         for (int i = 0; i < 30000; i++) {
@@ -196,13 +196,13 @@ public class NHashTableTests {
         System.out.println("Collisions occurred = " + ht.getCollisionsCounter());
     }
 
-    @Test
-    public void TestFDeleteNotExistBiggerN() {
-        HashTable3 ht = new HashTable3(10000);
+    @Test //test deletion of bigger number of elements that don't exist in big table
+    public void TestFDeleteNotExistBiggerN2() {
+        HashTableN2 ht = new HashTableN2(10000);
         ArrayList<String> stringsInserted = new ArrayList<>();
         for (int i = 0; i < 30000; i++) {
             String str = randStr(8);
-            ht.insert(str);
+            ht.insert(str, true);
             stringsInserted.add(str);
         }
         for (int i = 0; i < 30000; i++) {

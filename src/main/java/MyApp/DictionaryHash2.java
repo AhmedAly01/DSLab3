@@ -1,15 +1,11 @@
 package MyApp;
 
-import HashTable.HashTable3;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import HashTable.HashTableN;
 
 public class DictionaryHash2 extends AbstractFactory {
-    HashTable3 Hash;
+    HashTableN Hash;
     DictionaryHash2(int n){
-        Hash = new HashTable3(n);
+        Hash = new HashTableN(n);
     }
 
     @Override

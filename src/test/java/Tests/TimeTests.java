@@ -1,14 +1,14 @@
 package Tests;
 
-import HashTable.HashTable;
-import HashTable.HashTable3;
+import HashTable.HashTableN2;
+import HashTable.HashTableN;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 public class TimeTests {
     @Test
     public void TestInsert1kN2() {
-        HashTable ht = new HashTable(1000);
+        HashTableN2 ht = new HashTableN2(1000);
         ArrayList<String> insertedStrings = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
             String str = randStr(8);
@@ -25,7 +25,7 @@ public class TimeTests {
 
     @Test
     public void TestInsert5kN2() {
-        HashTable ht = new HashTable(5000);
+        HashTableN2 ht = new HashTableN2(5000);
         ArrayList<String> insertedStrings = new ArrayList<>();
         for (int i = 0; i < 5000; i++) {
             String str = randStr(8);
@@ -42,7 +42,7 @@ public class TimeTests {
 
     @Test
     public void TestInsert10kN2() {
-        HashTable ht = new HashTable(10000);
+        HashTableN2 ht = new HashTableN2(10000);
         ArrayList<String> insertedStrings = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {
             String str = randStr(8);
@@ -59,7 +59,7 @@ public class TimeTests {
 
     @Test
     public void TestInsert20kN2() {
-        HashTable ht = new HashTable(20000);
+        HashTableN2 ht = new HashTableN2(20000);
         ArrayList<String> insertedStrings = new ArrayList<>();
         for (int i = 0; i < 20000; i++) {
             String str = randStr(8);
@@ -76,7 +76,7 @@ public class TimeTests {
 
     @Test
     public void TestInsert30kN2() {
-        HashTable ht = new HashTable(30000);
+        HashTableN2 ht = new HashTableN2(30000);
         ArrayList<String> insertedStrings = new ArrayList<>();
         for (int i = 0; i < 30000; i++) {
             String str = randStr(8);
@@ -93,7 +93,7 @@ public class TimeTests {
 
     @Test
     public void TestInsert1kN() {
-        HashTable3 ht = new HashTable3(1000);
+        HashTableN ht = new HashTableN(1000);
         ArrayList<String> insertedStrings = new ArrayList<>();
         for (int i = 0; i < 1000; i++) {
             String str = randStr(8);
@@ -110,7 +110,7 @@ public class TimeTests {
 
     @Test
     public void TestInsert5kN() {
-        HashTable3 ht = new HashTable3(5000);
+        HashTableN ht = new HashTableN(5000);
         ArrayList<String> insertedStrings = new ArrayList<>();
         for (int i = 0; i < 5000; i++) {
             String str = randStr(8);
@@ -127,7 +127,7 @@ public class TimeTests {
 
     @Test
     public void TestInsert10kN() {
-        HashTable3 ht = new HashTable3(10000);
+        HashTableN ht = new HashTableN(10000);
         ArrayList<String> insertedStrings = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {
             String str = randStr(8);
@@ -144,7 +144,7 @@ public class TimeTests {
 
     @Test
     public void TestInsert20kN() {
-        HashTable3 ht = new HashTable3(20000);
+        HashTableN ht = new HashTableN(20000);
         ArrayList<String> insertedStrings = new ArrayList<>();
         for (int i = 0; i < 20000; i++) {
             String str = randStr(8);
@@ -161,7 +161,7 @@ public class TimeTests {
 
     @Test
     public void TestInsert30kN() {
-        HashTable3 ht = new HashTable3(30000);
+        HashTableN ht = new HashTableN(30000);
         ArrayList<String> insertedStrings = new ArrayList<>();
         for (int i = 0; i < 30000; i++) {
             String str = randStr(8);

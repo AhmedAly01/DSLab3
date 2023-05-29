@@ -1,16 +1,12 @@
 package MyApp;
 
-import HashTable.HashTable;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import HashTable.HashTableN2;
 
 public class DictionaryHash1 extends AbstractFactory{
-    HashTable Hash;
+    HashTableN2 Hash;
 
     DictionaryHash1(int n){
-        Hash = new HashTable(n);
+        Hash = new HashTableN2(n);
     }
     @Override
     boolean insert(String str) {

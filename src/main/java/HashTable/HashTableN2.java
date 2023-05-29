@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
-public class HashTable {
+public class HashTableN2 {
     private int[][] h;
     private int n;
     private String[] table;
@@ -17,7 +17,7 @@ public class HashTable {
 
     private int size = 0;
 
-    public HashTable(int n) {
+    public HashTableN2(int n) {
         this.b = 2* (int)Math.ceil(Math.log(n) / Math.log(2));
         this.n = n;
         h = generateHashMatrix(b, u);
@@ -182,7 +182,7 @@ public class HashTable {
 
 
     public static void main(String[] args) {
-        HashTable uh = new HashTable(10);
+        HashTableN2 uh = new HashTableN2(10);
         System.out.println(uh.insert("hello------------------------------------------------------------", true));
         System.out.println(Arrays.toString(uh.table));
         System.out.println(uh.insert("hello-----------", true));

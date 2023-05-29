@@ -6,20 +6,20 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
 
-public class HashTable3 {
+public class HashTableN {
     private int[][] h;
     private int n;
-    private HashTable[] table;
+    private HashTableN2[] table;
     private int u = 64;
     private int b;
     private int collisionsCounter = 0;
     private int size = 0;
 
-    public HashTable3(int n) {
+    public HashTableN(int n) {
         this.b = (int)Math.ceil(Math.log(n) / Math.log(2));
         this.n = n;
         h = generateHashMatrix(b, u);
-        table = new HashTable[this.n];
+        table = new HashTableN2[this.n];
         this.collisionsCounter = 0;
     }
 
@@ -57,7 +57,7 @@ public class HashTable3 {
     public boolean insert(String x){
         int index = hash(x);
         if(table[index] == null){
-            table[index] = new HashTable(1);
+            table[index] = new HashTableN2(1);
             int state = table[index].insert(x,false);
             this.size++;
             return true;
@@ -67,7 +67,7 @@ public class HashTable3 {
             int state = table[index].insert(x, false);
             if(state == 3){
                 collisionsCounter++;
-                HashTable table = new HashTable(this.table[index].getN()+1);
+                HashTableN2 table = new HashTableN2(this.table[index].getN()+1);
                 for(String elem: this.table[index].getTable()){
                     if(elem == null)continue;
                     table.insert(elem,true);
@@ -86,7 +86,7 @@ public class HashTable3 {
     public boolean insert(String x, int[] count){
         int index = hash(x);
         if(table[index] == null){
-            table[index] = new HashTable(1);
+            table[index] = new HashTableN2(1);
             int state = table[index].insert(x,false);
             this.size++;
             return true;
@@ -96,9 +96,9 @@ public class HashTable3 {
             int state = table[index].insert(x, false);
             if(state == 3){
                 collisionsCounter++;
-                HashTable table = this.table[index];
+                HashTableN2 table = this.table[index];
                 if(this.table[index].getN() < count[index]){
-                    table = new HashTable(this.table[index].getN() + count[index]);
+                    table = new HashTableN2(this.table[index].getN() + count[index]);
                 }
                 for(String elem: this.table[index].getTable()){
                     if(elem == null)continue;
@@ -190,7 +190,7 @@ public class HashTable3 {
     }
 
     public static void main(String[] args) {
-        HashTable3 uh = new HashTable3(4);
+        HashTableN uh = new HashTableN(4);
         System.out.println(uh.insert("h1"));
         System.out.println(uh.insert("h2"));
         System.out.println(uh.insert("h3"));
