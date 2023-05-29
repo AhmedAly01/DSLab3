@@ -13,6 +13,8 @@ public class HashTable3 {
     private int u = 64;
     private int b;
     private int collisionsCounter = 0;
+    private int size = 0;
+
     public HashTable3(int n) {
         this.b = (int)Math.ceil(Math.log(n) / Math.log(2));
         this.n = n;
@@ -57,6 +59,7 @@ public class HashTable3 {
         if(table[index] == null){
             table[index] = new HashTable(1);
             int state = table[index].insert(x,false);
+            size++;
             return true;
 //        }else if(Hs[table[index]] == null &&As[table[index]][0] == x){
 //            return false;
@@ -162,5 +165,6 @@ public class HashTable3 {
 
     public int getCollisionsCounter() { return collisionsCounter; }
 
-    public int length() {return table.length;}
+    public int length() {return this.size;}
+
 }

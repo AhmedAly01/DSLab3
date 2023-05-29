@@ -15,6 +15,8 @@ public class HashTable {
     private int b;
     private int collisionsCounter = 0;
 
+    private int size = 0;
+
     public HashTable(int n) {
         this.b = 2* (int)Math.ceil(Math.log(n) / Math.log(2));
         this.n = n;
@@ -94,6 +96,7 @@ public class HashTable {
         int index = hash(x);
         if(table[index] == null){
             table[index] = x;
+            size++;
             return 1; //// successfully inserted
         }else if(Objects.equals(table[index], x)){
             return 2; ////already exists
@@ -203,5 +206,5 @@ public class HashTable {
 
     public int getCollisionsCounter() { return collisionsCounter; }
 
-    public int length() {return table.length;}
+    public int length() {return this.size;}
 }
