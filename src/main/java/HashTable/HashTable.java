@@ -174,6 +174,7 @@ public class HashTable {
         }
         if (Objects.equals(table[index], x)) {
             table[index] = null;
+            this.size--;
             return true;
         }
         else return false;

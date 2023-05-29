@@ -59,7 +59,7 @@ public class HashTable3 {
         if(table[index] == null){
             table[index] = new HashTable(1);
             int state = table[index].insert(x,false);
-            size++;
+            this.size++;
             return true;
 //        }else if(Hs[table[index]] == null &&As[table[index]][0] == x){
 //            return false;
@@ -77,7 +77,7 @@ public class HashTable3 {
             }
             else if(state==2||state==4)
                 return false;
-
+            this.size++;
             return true;
         }
     }
@@ -88,6 +88,7 @@ public class HashTable3 {
         if(table[index] == null){
             table[index] = new HashTable(1);
             int state = table[index].insert(x,false);
+            this.size++;
             return true;
 //        }else if(Hs[table[index]] == null &&As[table[index]][0] == x){
 //            return false;
@@ -108,7 +109,7 @@ public class HashTable3 {
             }
             else if(state==2||state==4)
                 return false;
-
+            this.size++;
             return true;
         }
     }
@@ -181,8 +182,10 @@ public class HashTable3 {
     }
     public boolean delete(String x){ ////// changed to boolean true if item to be deleted existed and false if not
         int index = hash(x);
-        if (table[index] != null)
+        if (table[index] != null) {
+            this.size--;
             return table[index].delete(x);
+        }
         else return false;
     }
 
