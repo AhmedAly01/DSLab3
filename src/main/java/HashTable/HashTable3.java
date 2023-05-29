@@ -82,12 +82,49 @@ public class HashTable3 {
         }
     }
 
+
+    public boolean insert(String x, int[] count){
+        int index = hash(x);
+        if(table[index] == null){
+            table[index] = new HashTable(1);
+            int state = table[index].insert(x,false);
+            return true;
+//        }else if(Hs[table[index]] == null &&As[table[index]][0] == x){
+//            return false;
+        }else{
+            int state = table[index].insert(x, false);
+            if(state == 3){
+                collisionsCounter++;
+                HashTable table = this.table[index];
+                if(this.table[index].getN() < count[index]){
+                    table = new HashTable(this.table[index].getN() + count[index]);
+                }
+                for(String elem: this.table[index].getTable()){
+                    if(elem == null)continue;
+                    table.insert(elem,true);
+                }
+                table.insert(x,true);
+                this.table[index] = table;
+            }
+            else if(state==2||state==4)
+                return false;
+
+            return true;
+        }
+    }
+
+
     private int[] BatchExecution(String str,int type){
         int success = 0, fail = 0;
         String[] words = str.split(" ");
         if(type==0) {
+            int[] count = new int[this.n];
+            for (String s: words){
+                int index = hash(s);
+                count[index]++;
+            }
             for (String s : words) {
-                if (this.insert(s)) {
+                if (this.insert(s, count)) {
                     success++;
                 }
                 else {
